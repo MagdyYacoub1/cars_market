@@ -10,7 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations: # Add this line
+    sdk: flutter         # Add this line
   cupertino_icons: ^1.0.2
+  carousel_slider: ^3.0.0
+  dots_indicator: ^2.0.0
+  shared_preferences: ^2.0.5
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +28,8 @@ flutter:
 
   assets:
     - assets/
+    - lib/localization/languages/en.json
+    - lib/localization/languages/ar.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

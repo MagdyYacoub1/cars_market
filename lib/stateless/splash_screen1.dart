@@ -1,37 +1,82 @@
-import 'package:car_market2/stateless/splash_screen2.dart';
-import 'package:car_market2/stateless/splash_screen2.dart';
+import 'package:car_market2/localization/localization_constants.dart';
+import 'package:car_market2/stateless/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
-import '../main_screen.dart';
+import '../color.dart';
 
 class SplashScreen1 extends StatelessWidget {
-  final routeName = "./splashScreen1";
+  final String routeName = "./splashScreen1";
+  final double splashIndex = 0.0;
 
   const SplashScreen1({Key key}) : super(key: key);
 
-  void showHome(context){
-    Navigator.of(context).pushNamed(SplashScreen2().routeName);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            "assets/Mask Group 5.png",
-          ),
-          InkWell(
-            onTap: () =>{
-              showHome(context)
-            },
-            child: Center(
-              child: Image.asset(
-                "assets/Logo-PNG@3x.png",
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Image.asset(
+              "assets/Mask Group 5.png",
+            ),
+            Container(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 100,
+                      right: 50,
+                    ),
+                    child: Text(
+                      getTranslated(context, "welcome"),
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 15,
+                      right: 50,
+                    ),
+                    child: Container(
+                      width: mediaQuery.size.width * 0.8,
+                      child: Text(
+                        getTranslated(context, "splash_text1"),
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 15,
+                      right: 15,
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        "assets/Price-pana (2)@3x.png",
+                        width: mediaQuery.size.width * 0.75,
+                        height: mediaQuery.size.height * 0.37,
+                      ),
+                    ),
+                  ),
+                  dotsIndicator(splashIndex),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
