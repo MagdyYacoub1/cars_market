@@ -1,7 +1,7 @@
 import 'package:car_market2/localization/localization_constants.dart';
 import 'package:flutter/material.dart';
 
-import '../color.dart';
+import '../styling.dart';
 import 'dots_indicator.dart';
 
 class SplashScreen2 extends StatelessWidget {
@@ -23,38 +23,30 @@ class SplashScreen2 extends StatelessWidget {
             Container(
               width: double.infinity,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 100,
                       right: 50,
+                      left: 50,
                     ),
                     child: Text(
                       getTranslated(context, "splash_title2"),
-                      textAlign: TextAlign.end,
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
-                      ),
+                      style: titleStyle,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 15,
                       right: 50,
+                      left: 50,
                     ),
                     child: Container(
                       width: mediaQuery.size.width * 0.8,
                       child: Text(
                         getTranslated(context, "splash_text2"),
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: textColor,
-                        ),
+                        style: contextTextStyle,
                       ),
                     ),
                   ),
@@ -62,6 +54,7 @@ class SplashScreen2 extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       top: 15,
                       right: 15,
+                      left: 50,
                     ),
                     child: Center(
                       child: Image.asset(

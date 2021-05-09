@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../localization/my_localization.dart';
@@ -30,6 +31,7 @@ const Locale(Arabic, 'EG'),
 
 List<LocalizationsDelegate<dynamic>> localizationsDelegates = [
   MyLocalization.delegate,
+  CountryLocalizations.delegate,
   GlobalMaterialLocalizations.delegate,
   GlobalWidgetsLocalizations.delegate,
   GlobalCupertinoLocalizations.delegate,

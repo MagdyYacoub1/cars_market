@@ -5,5 +5,19 @@
   "splash_text1": "Complex Sentence Generator is a free content rewriter that can potentially rephrase, reword, paraphrase and/or rewrite sentences, paragraphs, articles, content, words and/or phrases into a more complex, unorthodox or convoluted alternative while delivering the same meaning.",
   "splash_text2": "Complex Sentence Generator is a free content rewriter that can potentially rephrase, reword, paraphrase and/or rewrite sentences, paragraphs, articles, content, words and/or phrases into a more complex, unorthodox or convoluted alternative while delivering the same meaning.",
   "splash_text3": "Complex Sentence Generator is a free content rewriter that can potentially rephrase, reword, paraphrase and/or rewrite sentences, paragraphs, articles, content, words and/or phrases into a more complex, unorthodox or convoluted alternative while delivering the same meaning.",
-  "continue": "Continue"
+  "continue": "Continue",
+  "sign_in": "Sign In",
+  "phone_number_hint": "Phone number",
+  "password_hint": "Password",
+  "forgot_password": "Forget Password?",
+  "other_ways": "Use Other Ways to Enter",
+  "don't_have_account": "Don't have an account?",
+  "register_new_account": "Register a new account",
+  "name_hint": "Name",
+  "email_hint": "Email",
+  "arabic": "Arabic",
+  "english": "English",
+  "register": "Register",
+  "have_account": "Already have an account?"
+
 }

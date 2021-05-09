@@ -1,4 +1,5 @@
 import 'package:car_market2/localization/localization_constants.dart';
+import 'package:car_market2/stateless/signIn_screen.dart';
 import 'package:car_market2/stateless/splash_screen1.dart';
 import 'package:car_market2/stateless/splash_screen2.dart';
 import 'package:car_market2/stateless/splash_screen3.dart';
@@ -6,16 +7,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../color.dart';
+import '../styling.dart';
 
 class SplashRoot extends StatelessWidget {
   final String routeName = "./splashRoot";
   const SplashRoot({Key key}) : super(key: key);
 
-  void changePage(CarouselController _controller, double index){
+  void changePage(CarouselController _controller, double index, BuildContext context){
     _controller.nextPage();
     print(index);
     if(index == 2.0) {
-      print("signIn page");
+      Navigator.of(context).pushNamed(SignInScreen().routeName);
     }
   }
 
@@ -52,7 +54,7 @@ class SplashRoot extends StatelessWidget {
             bottom: 25.0,
             left: (mediaQuery.size.width / 2) - ((mediaQuery.size.width * 0.7) / 2),
             child: TextButton(
-              onPressed: () => changePage(buttonCarouselController, pageIndex),
+              onPressed: () => changePage(buttonCarouselController, pageIndex, context),
               style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all(Size(width, height)),
                 backgroundColor: MaterialStateProperty.all(buttonColor),
@@ -65,11 +67,7 @@ class SplashRoot extends StatelessWidget {
               child: Center(
                 child: Text(
                   getTranslated(context, "continue"),
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: text2Color,
-                  ),
+                  style: buttonTextStyle,
                 ),
               ),
             ),

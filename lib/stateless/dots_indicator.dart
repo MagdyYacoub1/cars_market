@@ -13,7 +13,7 @@ Widget dotsIndicator(double index){
         dotsCount: 3,
         position: index,
         decorator: DotsDecorator(
-          color: textColor, // Inactive color
+          color: titleTextColor, // Inactive color
           activeColor: buttonColor,
         ),
       ),

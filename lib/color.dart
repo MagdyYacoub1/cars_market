@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-Color textColor = Color(0xFF707070);
-Color text2Color = Colors.white;
+const Color titleTextColor = Color(0xFF707070);
+const Color contextTextColor = Color(0xFFB2B2B2);
+const Color textColor2 = Color(0xFFEF505C);
+const Color textColor3 = Colors.white;
 Color buttonColor = createMaterialColor(Color(0xFFEB1C2C));
 
 
