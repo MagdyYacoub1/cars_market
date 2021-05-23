@@ -1,23 +1,46 @@
 import 'package:car_market2/localization/localization_constants.dart';
 import 'package:car_market2/stateless/register_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:car_market2/network/response/loginResponse.dart';
+import 'package:car_market2/network/request/loginRequest.dart';
 
 import '../color.dart';
+import '../main.dart';
 import '../styling.dart';
 
 class SignInScreen extends StatelessWidget {
   final routeName = "./signInScreen";
 
   const SignInScreen({Key key}) : super(key: key);
-void showRegisterScreen(BuildContext context)
-{
-  Navigator.of(context).pushNamed(RegisterScreen().routeName);
-}
+
+  void login(String phone, String password) async {
+    LoginResponse loginResponse =
+        await client.login(LoginRequest(phone: phone, password: password));
+    if (loginResponse?.status != null && loginResponse?.status == 200) {
+      showMyToast(loginResponse.message);
+    }else{
+      //showMyToast("A problem happened please try again");
+      if(loginResponse?.status != null){
+        showMyToast(loginResponse?.message);
+      }
+    }
+  }
+
+  void showMyToast(String message) {
+    print(message);
+  }
+
+  void showRegisterScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(RegisterScreen().routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     final double width = mediaQuery.size.width * 0.7;
     const double height = 45;
+    final phoneController = TextEditingController();
+    final passwordController = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -58,21 +81,27 @@ void showRegisterScreen(BuildContext context)
                             ),
                             SizedBox(height: 40.0),
                             TextField(
+                              //TODO: add validators to my text fields
+                              controller: phoneController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
-                                hintText: getTranslated(context, "phone_number_hint"),
+                                hintText:
+                                    getTranslated(context, "phone_number_hint"),
                                 hintStyle: contextTextStyle,
                               ),
                             ),
                             SizedBox(height: 15.0),
                             TextField(
+                              //TODO: add validators to my text fields
+                              controller: passwordController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
-                                hintText: getTranslated(context, "password_hint"),
+                                hintText:
+                                    getTranslated(context, "password_hint"),
                                 hintStyle: contextTextStyle,
                               ),
                             ),
@@ -80,7 +109,7 @@ void showRegisterScreen(BuildContext context)
                             Container(
                               width: double.infinity,
                               child: InkWell(
-                                onTap: ()=>{},
+                                onTap: () => {},
                                 child: Text(
                                   getTranslated(context, "forgot_password"),
                                   textAlign: TextAlign.end,
@@ -90,7 +119,8 @@ void showRegisterScreen(BuildContext context)
                             ),
                             SizedBox(height: 25.0),
                             TextButton(
-                              onPressed: () => {},
+                              onPressed: () => login(phoneController.text,
+                                  passwordController.text),
                               style: ButtonStyle(
                                 minimumSize: MaterialStateProperty.all(
                                     Size(width, height)),

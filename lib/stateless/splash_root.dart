@@ -15,7 +15,6 @@ class SplashRoot extends StatelessWidget {
 
   void changePage(CarouselController _controller, double index, BuildContext context){
     _controller.nextPage();
-    print(index);
     if(index == 2.0) {
       Navigator.of(context).pushNamed(SignInScreen().routeName);
     }

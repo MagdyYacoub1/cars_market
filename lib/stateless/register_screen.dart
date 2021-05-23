@@ -1,9 +1,12 @@
 import 'package:car_market2/localization/localization_constants.dart';
 import 'package:car_market2/localization/my_localization.dart';
+import 'package:car_market2/main.dart';
 import 'package:car_market2/stateless/signIn_screen.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:car_market2/network/response/registerResponse.dart';
+import 'package:car_market2/network/request/registerRequest.dart';
 
 import '../color.dart';
 import '../styling.dart';
@@ -11,8 +14,22 @@ import '../styling.dart';
 class RegisterScreen extends StatelessWidget {
   final routeName = "./startScreen";
 
-  void showConditionsScreen(BuildContext context) {
-    //Navigator.of(context).pushNamed(RegisterScreen().routeName);
+  void register(
+      String name, String phone, String password, String email) async {
+    RegisterResponse registerResponse = await client.register(RegisterRequest(
+        name: name, phone: phone, password: password, email: email));
+    if(registerResponse?.status != null && registerResponse?.status == 200){
+      showMyToast(registerResponse.message);
+    }else{
+      if(registerResponse?.status != null){
+        showMyToast(registerResponse?.message);
+      }
+    }
+
+  }
+
+  void showMyToast(String message) {
+    print(message);
   }
 
   bool initialCircleState(BuildContext context) {
@@ -42,6 +59,11 @@ class RegisterScreen extends StatelessWidget {
     final double redButtonWidth = mediaQuery.size.width * 0.7;
     const double redButtonHeight = 45;
     bool languageCircle = initialCircleState(context);
+    final phoneController = TextEditingController();
+    final nameController = TextEditingController();
+    final passwordController = TextEditingController();
+    final emailController = TextEditingController();
+
     CountryCode countryCode;
     return Scaffold(
       body: SingleChildScrollView(
@@ -83,6 +105,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 40.0),
                             TextField(
+                              controller: nameController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.0),
@@ -93,6 +116,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 15.0),
                             TextField(
+                              controller: emailController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.0),
@@ -103,6 +127,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 15.0),
                             TextField(
+                              controller: phoneController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15.0)),
@@ -113,13 +138,14 @@ class RegisterScreen extends StatelessWidget {
                                   padding: EdgeInsets.zero,
                                   initialSelection: 'SD',
                                   onChanged: (code) {
-                                      countryCode = code;
+                                    countryCode = code;
                                   },
                                 ),
                               ),
                             ),
                             SizedBox(height: 15.0),
                             TextField(
+                              controller: passwordController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.0),
@@ -176,7 +202,11 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 25.0),
                             TextButton(
-                              onPressed: () => showConditionsScreen,
+                              onPressed: () => register(
+                                  nameController.text,
+                                  phoneController.text,
+                                  passwordController.text,
+                                  emailController.text),
                               style: ButtonStyle(
                                 minimumSize: MaterialStateProperty.all(
                                     Size(redButtonWidth, redButtonHeight)),
